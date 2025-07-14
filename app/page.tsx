@@ -16,9 +16,9 @@ export default function Home() {
       <FeaturesSection/>
       </div>
 
-      <div id="how-it-works">
+      {/* <div id="how-it-works">
         <HowItWorksSection/>
-      </div>
+      </div> */}
 
       <div id="benefits">
         <BenefitsSection/>

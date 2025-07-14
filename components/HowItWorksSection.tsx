@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 const steps = [
   {
@@ -66,16 +67,55 @@ const HowItWorksSection = () => {
       className="bg-white py-16 px-4 xl:px-8 w-full max-w-[120rem] mx-auto flex flex-col justify-center"
       id="how-it-works"
     >
-      <div className="text-center mb-12">
-        <h2 className="text-4xl xl:text-5xl mb-4 font-bold text-[#0060FE]">How It Works</h2>
-        <h3 className="text-xl xl:text-2xl mb-4 font-bold text-gray-800">Use VAST in Just a Few Easy Steps.</h3>
-        <p className="text-gray-600 text-base xl:text-lg max-w-2xl mx-auto">
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.h2
+          className="text-4xl xl:text-5xl mb-4 font-bold text-[#0060FE]"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          How It Works
+        </motion.h2>
+        <motion.h3
+          className="text-xl xl:text-2xl mb-4 font-bold text-gray-800"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          Use VAST in Just a Few Easy Steps.
+        </motion.h3>
+        <motion.p
+          className="text-gray-600 text-base xl:text-lg max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           Whether you want to move, hire, earn, or sell VAST makes it simple and secure for everyone.
-        </p>
-      </div>
-
+        </motion.p>
+      </motion.div>
       {/* Stepper */}
-      <div className="relative flex flex-col xl:flex-row items-center justify-between px-4 xl:px-8 mb-16">
+      <motion.div
+        className="relative flex flex-col xl:flex-row items-center justify-between px-4 xl:px-8 mb-16"
+        initial="hidden"
+        whileInView="visible"
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: {
+            opacity: 1, y: 0,
+            transition: { staggerChildren: 0.15, duration: 0.7, ease: 'easeOut' }
+          }
+        }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {/* Progress line for desktop (z-0) */}
         <div className="hidden xl:block absolute top-8 left-0 right-0 h-1 mx-4 xl:mx-8 z-0 bg-[#0060FE1A]/10 rounded-full">
           <div
@@ -83,15 +123,16 @@ const HowItWorksSection = () => {
             style={{ width: `${((activeStep - 1) / (steps.length - 1)) * 100}%` }}
           />
         </div>
-
         {/* Steps (z-10) */}
         {steps.map((step, idx) => (
-          <div
+          <motion.div
             key={step.number}
             ref={el => { stepRefs.current[idx] = el; }}
             className={`flex flex-col relative items-center xl:items-start flex-1 mb-12 lg:mb-0 transition-all duration-500 z-20 ${
               activeStep >= step.number ? 'opacity-100 transform translate-y-0' : 'opacity-50 transform translate-y-4'
             }`}
+            variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
           >
             {/* Step circle (z-20) */}
             <div
@@ -103,7 +144,6 @@ const HowItWorksSection = () => {
             >
               {step.number}
             </div>
-
             {/* Step content */}
             <div className="text-center xl:text-left max-w-xs xl:mr-4">
               <h4
@@ -121,7 +161,6 @@ const HowItWorksSection = () => {
                 {step.description}
               </p>
             </div>
-
             {/* Vertical line for mobile */}
             {idx < steps.length - 1 && (
               <div className="xl:hidden w-1 h-16 bg-gray-200 mt-6 rounded-full overflow-hidden">
@@ -132,11 +171,9 @@ const HowItWorksSection = () => {
                 />
               </div>
             )}
-          </div>
+          </motion.div>
         ))}
-         </div>
-
-
+      </motion.div>
       {/* Download Buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button  onClick={() => handleStoreClick("Google Play")} className="flex items-center justify-center gap-3 bg-[#0060FE] text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 text-lg font-medium transform hover:scale-105">

@@ -1,99 +1,70 @@
 "use client"
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import Link from 'next/link';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const AboutSection = () => {
-  const phoneRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    if (phoneRef.current) {
-      gsap.to(phoneRef.current, {
-        y: 24,
-        duration: 2.5,
-        ease: 'power1.inOut',
-        yoyo: true,
-        repeat: -1,
-      });
-    }
-  }, []);
-
   return (
-    <section className="relative">
-      {/* White background for "About us" title */}
-      <div className="bg-white py-16 text-center">
-        <h2 
-          className="text-4xl lg:text-5xl"
-          style={{ 
-            fontFamily: 'Product Sans, sans-serif',
-            fontWeight: 700,
-            color: '#0060FE'
-          }}
+    <section className="w-full bg-gradient-to-b from-[#F8FAFC] to-[#EAF3F8] pt-[140px] px-4 h-max">
+      <div className="flex flex-col items-center justify-center">
+        <motion.div
+          className='max-w-7xl mx-auto flex flex-col items-center justify-center'
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.3 }}
         >
-          About us
-        </h2>
-      </div>
-      
-      {/* Blue background section */}
-      <div className="bg-[#0060FE] object-center" style={{
-        backgroundImage: "url(/geometiric-bg.png)",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
-      }}>
-       <div className='bg-[#0060FE]/80  py-16 px-4 xl:px-8'>
-       <div className="max-w-[120rem] mx-auto">
-          <div className="flex justify-between md:justify-center xl:justify-between flex-wrap gap-12 items-center">
-            {/* Left Content - Phone Image */}
-            <div className="flex justify-center lg:justify-start">
-              <img 
-               ref={phoneRef}
-                src="/about-section-image.png" 
-                alt="Vast mobile app showing 'You're All Set To Go' success message"
-                className="max-w-full h-auto max-h-[600px] object-contain"
-              />
-            </div>
-            
-            {/* Right Content - Text */}
-            <div className="space-y-[40px] text-white md:text-center xl:text-left">
-              <h3 
-                className="text-[24px] lg:text-[28px] leading-tight"
-                style={{ 
-                  fontFamily: 'Product Sans, sans-serif',
-                  fontWeight: 700
-                }}
-              >
-                Powering Everyday Solutions with Smart Technology.
-              </h3>
-              
-              <p 
-                className="text-lg lg:text-xl leading-relaxed opacity-90 max-w-[662px]"
-                style={{ 
-                  fontFamily: 'Product Sans, sans-serif',
-                  fontWeight: 400
-                }}
-              >
-                Welcome to Vast App, a product of Nkiri Synergies LTD. We are a 
-                dynamic company that leverages technology to drive innovation in 
-                various sectors. Our mission is to provide efficient, reliable, and 
-                sustainable solutions that meet the evolving needs of our customers.
-              </p>
-              
-              {/* Learn More Button */}
-              <button 
-                className="bg-white text-[#0060FE] px-8 h-[50px] rounded-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
-                style={{ 
-                  fontFamily: 'Product Sans, sans-serif',
-                  fontWeight: 400,
-                  fontSize: '20px'
-                }}
-              >
-               <Link href='/about'> Learn more</Link>
-              </button>
-            </div>
-          </div>
-        </div>
-       </div>
+          {/* Heading */}
+          <motion.h2
+            className="text-3xl md:text-5xl font-semibold xl:text-[60px] text-center mb-6"
+            style={{ fontFamily: 'var(--font-manrope), sans-serif', color: '#222' }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            We shall <span className="text-[#4060FE]">never deny</span> a request, even the<br className="hidden md:block" />
+            <span className="text-[#0060FE]">most comprehensive  service need</span>
+          </motion.h2>
+          {/* Subtitle */}
+          <motion.p
+            className="text-[#8B8B8B] text-lg md:text-xl text-center max-w-2xl mb-[48px]"
+            style={{ fontFamily: 'var(--font-manrope), sans-serif' }}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            Vast app is a comprehensive platform that connects service providers, riders, and customers, enabling seamless transactions and interactions with verified professionals
+          </motion.p>
+          {/* Store Badges */}
+          <motion.div
+            className="flex gap-[28px] mb-12"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <img src="/play store.svg" alt="Get it on Google Play" className="h-[60px] w-auto" />
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <img src="/app store.svg" alt="Download on the App Store" className="h-[60px] w-auto" />
+            </a>
+          </motion.div>
+        </motion.div>
+        {/* Phone Mockups */}
+        <motion.div
+          className="flex flex-col md:flex-row items-end justify-center gap-4 md:gap-8 mt-4 w-full"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <img src="/mockup-1.png" alt="Phone 1" className="w-[220px] md:w-[260px] xl:w-[459px] h-auto object-contain z-10" />
+          <img src="/mockup-3.png" alt="Phone 2" className="w-[220px] md:w-[260px] xl:w-[459px] h-auto object-contain z-20" />
+          <img src="/mockup-2.png" alt="Phone 3" className="w-[220px] md:w-[260px] xl:w-[459px] h-auto object-contain z-10" />
+        </motion.div>
       </div>
     </section>
   );

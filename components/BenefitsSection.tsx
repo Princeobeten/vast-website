@@ -1,115 +1,67 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
-import gsap from 'gsap';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const benefits = [
-  {
-    icon: (
-      <Image src="/icons/verify.svg" alt="All-in-One Access" width={40} height={40} />
-    ),
-    title: "All-in-One Access",
-    description: "No more switching apps — ride, hire, sell, and shop all in one place.",
-  },
-  {
-    icon: (
-      <Image src="/icons/lock.svg" alt="Escrow-Secured Payments" width={40} height={40} />
-    ),
-    title: "Escrow-Secured Payments",
-    description: "Your money stays safe. Funds are only released when the job is done right.",
-  },
-  {
-    icon: (
-      <Image src="/icons/eye.svg" alt="More Visibility for Providers" width={40} height={40} />
-    ),
-    title: "More Visibility for Providers",
-    description: "Artisans and sellers get discovered faster with profiles, ratings, and search filters.",
-  },
-  {
-    icon: (
-      <Image src="/icons/cuida_lamp-on-outline.svg" alt="Fast & User-Friendly" width={40} height={40} />
-    ),
-    title: "Fast & User-Friendly",
-    description: "A lightweight mobile app that works smoothly, even on slower networks.",
-  },
-  {
-    icon: (
-      <Image src="/icons/game-icons_africa.svg" alt="Built for Africans" width={40} height={40} />
-    ),
-    title: "Built for Africans",
-    description: "Tailored for everyday users, vendors, and professionals across Nigeria and beyond.",
-  },
-];
+const testimonial = {
+  image: '/testimonial-user.png', // Replace with your actual image path
+  name: 'Cameron Williamson',
+  role: 'Founder Gojek Corp.',
+  text: 'Kerjarodi.com is an application for job seekers and workers who prioritize user comfort and the quality of services provided by our team',
+};
 
 const BenefitsSection = () => {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-  // Remove scrollIndex and scrollToIndex logic
-
-  useEffect(() => {
-    if (!scrollRef.current) return;
-    const el = scrollRef.current;
-    const singleSetWidth = el.scrollWidth / 2; // since we duplicate the cards
-    if (singleSetWidth <= 0) return;
-    let ctx = gsap.context(() => {
-      const loop = () => {
-        gsap.fromTo(
-          el,
-          { scrollLeft: 0 },
-          {
-            scrollLeft: singleSetWidth,
-            duration: 12,
-            ease: 'none',
-            onComplete: () => {
-              el.scrollLeft = 0;
-              loop();
-            },
-          }
-        );
-      };
-      loop();
-    }, el);
-    return () => ctx.revert();
-  }, []);
-
-  // Removed handlePrev and handleNext functions
-
   return (
-    <section className="relative bg-[#0060FE] bg-cover bg-center " style={{ backgroundImage: 'url(/geometiric-bg.png)' }}>
-      <div className="max-w-[120rem] mx-auto py-20 px-4 xl:px-0 bg-[#0060FE]/80">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl xl:text-5xl font-bold text-white mb-[30px]" style={{ fontFamily: 'Product Sans, sans-serif' }}>Benefits</h2>
-          <h3 className="text-2xl xl:text-[28px] font-bold text-white mb-[10px]" style={{ fontFamily: 'Product Sans, sans-serif' }}>Built for Convenience. Designed for Growth.</h3>
-          <p className="text-white/90 font-[400] text-lg xl:text-[22px] max-w-3xl mx-auto" style={{ fontFamily: 'Product Sans, sans-serif' }}>
-            Whether you're booking a ride, hiring a service, or earning as a provider VAST makes everyday life smarter, safer, and more rewarding.
-          </p>
-        </div>
-        <div className="relative">
-          {/* Removed Scroll Buttons */}
-          <div
-            ref={scrollRef}
-            className="flex justify-start gap-6 overflow-x-auto scrollbar-hide py-4 px-2 xl:px-0"
-            style={{ scrollBehavior: 'auto' }}
-          >
-            {/* Duplicate the benefits array for seamless looping */}
-            {benefits.concat(benefits).map((benefit, idx) => (
-              <div
-                key={idx}
-                className="min-w-[320px] max-w-[343px] w-full bg-white rounded-[20px] flex flex-col items-start px-[30px] py-[30px] snap-center transition-all duration-300"
-                style={{ fontFamily: 'Product Sans, sans-serif' }}
-              >
-                <div className="mb-6">
-                  <div className="w-[77px] h-[77px] bg-[#E3EFFF] rounded-xl flex items-center justify-center">
-                    {React.cloneElement(benefit.icon, { style: { background: 'none' } })}
-                  </div>
-                </div>
-                <h4 className="text-[22px] font-bold text-[#0060FE] mb-[15px]">{benefit.title}</h4>
-                <p className="text-gray-700 text-[14px]">{benefit.description}</p>
-              </div>
-            ))}
+    <section className="w-full bg-gradient-to-br from-[#F8FAFC] to-[#EAF3F8] py-[140px] px-4">
+      <motion.div
+        className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        {/* Left: Testimonial Image */}
+        <motion.div
+          className="flex-shrink-0"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <img
+            src={testimonial.image}
+            alt={testimonial.name}
+            className="w-[360px] h-[573px] object-cover rounded-[32px] "
+          />
+        </motion.div>
+        {/* Right: Testimonial Content */}
+        <motion.div
+          className="flex-1 flex flex-col items-start justify-center mt-8 md:mt-0"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <h2 className="text-3xl md:text-5xl font-semibold mb-6" style={{ fontFamily: 'var(--font-manrope), sans-serif', color: '#222' }}>
+            What do they <span className="text-[#4060FE]">think about</span><br className="hidden md:block" /> <span className="text-[#0060FE]">our App?</span>
+          </h2>
+          <div className="mb-4">
+            <div className="text-2xl font-bold text-black" style={{ fontFamily: 'var(--font-manrope), sans-serif' }}>{testimonial.name}</div>
+            <div className="text-[#8B8B8B] text-base mt-1" style={{ fontFamily: 'var(--font-manrope), sans-serif' }}>{testimonial.role}</div>
           </div>
-        </div>
-      </div>
+          <div className="bg-white rounded-2xl shadow p-8 mb-6 max-w-xl w-full">
+            <p className="text-[#8B8B8B] text-lg" style={{ fontFamily: 'var(--font-manrope), sans-serif' }}>{testimonial.text}</p>
+          </div>
+          <div className="flex gap-4">
+            <button className="w-12 h-12 rounded-lg border border-[#4060FE] flex items-center justify-center bg-white text-[#4060FE] text-xl transition hover:bg-[#FFF7F1]">
+              <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 7l-4 4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <button className="w-12 h-12 rounded-lg bg-[#4060FE] flex items-center justify-center text-white text-xl transition hover:brightness-110">
+              <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 7l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
