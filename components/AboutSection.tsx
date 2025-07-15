@@ -20,80 +20,49 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section className="relative">
-      {/* White background for "About us" title */}
-      <div className="bg-white py-16 text-center">
-        <h2 
-          className="text-4xl lg:text-5xl"
-          style={{ 
-            fontFamily: 'Product Sans, sans-serif',
-            fontWeight: 700,
-            color: '#0060FE'
-          }}
-        >
-          About us
-        </h2>
-      </div>
-      
-      {/* Blue background section */}
-      <div className="bg-[#0060FE] object-center" style={{
-        backgroundImage: "url(/geometiric-bg.png)",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
-      }}>
-       <div className='bg-[#0060FE]/80  py-16 px-4 xl:px-8'>
-       <div className="max-w-[120rem] mx-auto">
-          <div className="flex justify-between md:justify-center xl:justify-between flex-wrap gap-12 items-center">
-            {/* Left Content - Phone Image */}
-            <div className="flex justify-center lg:justify-start">
-              <img 
-               ref={phoneRef}
-                src="/about-section-image.png" 
-                alt="Vast mobile app showing 'You're All Set To Go' success message"
-                className="max-w-full h-auto max-h-[600px] object-contain"
-              />
-            </div>
-            
-            {/* Right Content - Text */}
-            <div className="space-y-[40px] text-white md:text-center xl:text-left">
-              <h3 
-                className="text-[24px] lg:text-[28px] leading-tight"
-                style={{ 
-                  fontFamily: 'Product Sans, sans-serif',
-                  fontWeight: 700
-                }}
-              >
-                Powering Everyday Solutions with Smart Technology.
-              </h3>
-              
-              <p 
-                className="text-lg lg:text-xl leading-relaxed opacity-90 max-w-[662px]"
-                style={{ 
-                  fontFamily: 'Product Sans, sans-serif',
-                  fontWeight: 400
-                }}
-              >
-                Welcome to Vast App, a product of Nkiri Synergies LTD. We are a 
-                dynamic company that leverages technology to drive innovation in 
-                various sectors. Our mission is to provide efficient, reliable, and 
-                sustainable solutions that meet the evolving needs of our customers.
-              </p>
-              
-              {/* Learn More Button */}
-              <button 
-                className="bg-white text-[#0060FE] px-8 h-[50px] rounded-lg font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
-                style={{ 
-                  fontFamily: 'Product Sans, sans-serif',
-                  fontWeight: 400,
-                  fontSize: '20px'
-                }}
-              >
-               <Link href='/about'> Learn more</Link>
-              </button>
-            </div>
-          </div>
+    <section className="bg-[#E9F2FF] py-[80px] w-full flex items-center justify-center min-h-[600px]">
+      <div className="w-full max-w-[80rem] mx-auto flex flex-col xl:flex-row items-center justify-between gap-12 px-4 xl:px-8">
+        {/* Left: Phone Image */}
+        <div className="flex-1 flex justify-center items-center">
+          <img
+           ref={phoneRef}
+            src="/about-section-image.png" 
+            alt="Vast app phone mockup"
+            className="max-w-full h-auto max-h-[600px] object-contain"
+          />
         </div>
-       </div>
+        {/* Right: Text Content */}
+        <div className="flex-1 flex flex-col items-start justify-center max-w-2xl xl:pl-12">
+          <div
+            className="text-lg mb-4"
+            style={{
+              fontFamily: 'Product Sans, sans-serif',
+              color: '#0060FE',
+              fontWeight: 500,
+            }}
+          >
+            About us
+          </div>
+          <h2
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-black mb-6"
+            style={{ fontFamily: 'Product Sans, sans-serif', fontWeight: 700 }}
+          >
+            Everyday Solutions<br className="hidden md:block" /> with Vast.
+          </h2>
+          <p
+            className="text-lg md:text-xl text-black mb-8 max-w-xl"
+            style={{ fontFamily: 'Product Sans, sans-serif', fontWeight: 400 }}
+          >
+            Vast app is a comprehensive platform that connects service providers, riders, and customers, enabling seamless transactions and interactions with verified professionals
+          </p>
+          <a
+            href="/about"
+            className="bg-[#0060FE] text-white px-8 h-[50px] rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 flex items-center justify-center text-lg"
+            style={{ fontFamily: 'Product Sans, sans-serif', fontWeight: 400 }}
+          >
+            Discover More
+          </a>
+        </div>
       </div>
     </section>
   );
