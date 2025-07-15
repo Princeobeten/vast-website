@@ -116,7 +116,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between py-4 px-4 xl:px-8 max-w-[90rem] mx-auto relative">
         {/* Logo */}
         <Link href="/" className="h-auto w-[90px] z-40">
-          <img src="/vast-logo.svg" alt="vast-logo" />
+          <img src="/vast-logo.png" alt="vast logo" />
         </Link>
         {/* Desktop Nav Links and Download App Button grouped right */}
         <div className="hidden xl:flex items-center ml-auto gap-6">

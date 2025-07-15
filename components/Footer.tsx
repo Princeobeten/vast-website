@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="flex flex-col lg:flex-row justify-between gap-12 md:gap-0">
         {/* Left: Logo, tagline, socials */}
         <div className="flex-1 flex flex-col items-start justify-start min-w-[220px] mb-8 lg:mb-0">
-          <img src="/vast-logo.svg" alt="Vast Logo" className="h-12 mb-4" />
+          <img src="/vast-logo.png" alt="Vast Logo" className="h-12 mb-4" />
           <p className="text-[#6B6B6B] text-base mb-6 max-w-xs">Your everyday app for work, rides, and payments.</p>
           <div className="flex flex-row gap-4">
             <a href="#" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#0060FE33]/20 hover:bg-white transition">
