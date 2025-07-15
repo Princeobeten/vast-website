@@ -7,11 +7,10 @@ import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About us', href: '#' },
+  { name: 'About us', href: '/about' },
   { name: 'Features', href: '/#features' },
   { name: 'How It Works', href: '/#how-it-works' },
-  { name: 'Benefits', href: '#' },
-  { name: 'Contact us', href: '#' },
+  { name: 'Contact us', href: '/contact' },
 ];
 
 const storeOptions = [
@@ -114,42 +113,15 @@ const Navbar = () => {
           : 'bg-white'
       }`}
     >
-      <div className="flex items-center justify-between py-6 px-4 xl:px-8 max-w-[120rem] mx-auto relative">
+      <div className="flex items-center justify-between py-4 px-4 xl:px-8 max-w-[90rem] mx-auto relative">
         {/* Logo */}
-        <Link href="/" className="h-auto w-[90px] md:w-[108px] z-40">
+        <Link href="/" className="h-auto w-[90px] z-40">
           <img src="/vast-logo.svg" alt="vast-logo" />
         </Link>
-        {/* Desktop Nav Links */}
-        <div
-          className="hidden xl:flex gap-6"
-          style={{
-            fontFamily: 'Product Sans, sans-serif',
-            fontWeight: 400,
-            fontStyle: 'normal',
-            fontSize: '20px',
-            lineHeight: '100%',
-            letterSpacing: '0.21px',
-          }}
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={
-                isActive(link.href)
-                  ? 'text-[#0060FE] font-medium'
-                  : 'text-[#020202] hover:text-[#0060FE] transition-colors'
-              }
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-        {/* Desktop Download App Button + Dropdown */}
-        <div className="hidden xl:block relative" ref={dropdownRef}>
-          <button
-            onClick={() => setDropdownOpen((open) => !open)}
-            className="flex items-center gap-2 bg-[#0060FE] text-white px-6 h-[50px] rounded-[10px] hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 focus:outline-none"
+        {/* Desktop Nav Links and Download App Button grouped right */}
+        <div className="hidden xl:flex items-center ml-auto gap-6">
+          <div
+            className="flex gap-6"
             style={{
               fontFamily: 'Product Sans, sans-serif',
               fontWeight: 400,
@@ -159,30 +131,59 @@ const Navbar = () => {
               letterSpacing: '0.21px',
             }}
           >
-            Download App
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="9" cy="9" r="8.5" stroke="white" />
-              <path d="M6.75 8.25L9 10.5L11.25 8.25" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          {dropdownOpen && (
-            <div className="absolute right-0 mt-4 z-50 flex flex-col gap-[9px] w-full ">
-              {storeOptions.map((option) => (
-                <button
-                  key={option.name}
-                  onClick={() => handleStoreClick(option.name)}
-                  className=" flex items-center justify-center h-[50px] w-auto rounded-[10px] bg-[#0060FE]/10 text-[#0060FE] text-[20px] border-none outline-none transition hover:brightness-110"
-                  style={{
-                    fontFamily: 'Product Sans, sans-serif',
-                    fontWeight: 400,
-                    fontStyle: 'normal',
-                  }}
-                >
-                  {option.name}
-                </button>
-              ))}
-            </div>
-          )}
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={
+                  isActive(link.href)
+                    ? 'text-[#0060FE] font-medium'
+                    : 'text-[#020202] hover:text-[#0060FE] transition-colors'
+                }
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+          {/* Desktop Download App Button + Dropdown */}
+          <div className="relative ml-6" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen((open) => !open)}
+              className="flex items-center gap-2 bg-[#0060FE] text-white px-6 h-[50px] rounded-[10px] hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 focus:outline-none"
+              style={{
+                fontFamily: 'Product Sans, sans-serif',
+                fontWeight: 400,
+                fontStyle: 'normal',
+                fontSize: '20px',
+                lineHeight: '100%',
+                letterSpacing: '0.21px',
+              }}
+            >
+              Download App
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9" cy="9" r="8.5" stroke="white" />
+                <path d="M6.75 8.25L9 10.5L11.25 8.25" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-4 z-50 flex flex-col gap-[9px] w-full bg-white rounded-b-lg px-3 pb-4">
+                {storeOptions.map((option) => (
+                  <button
+                    key={option.name}
+                    onClick={() => handleStoreClick(option.name)}
+                    className=" flex items-center justify-center h-[50px] w-auto rounded-[10px] bg-[#0060FE]/10 text-[#0060FE] text-[20px] border-none outline-none transition hover:brightness-110"
+                    style={{
+                      fontFamily: 'Product Sans, sans-serif',
+                      fontWeight: 400,
+                      fontStyle: 'normal',
+                    }}
+                  >
+                    {option.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         {/* Hamburger Icon for Mobile */}
         <button
